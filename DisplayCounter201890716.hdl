@@ -8,7 +8,7 @@ CHIP DisplayCounter201890716 {
     Register(in=next, load=inc, out=counterOut);
 
     Decoder201890716(
-        A=counterOut[0],
+        A=counterOut0,
         B=counterOut[1],
         C=counterOut[2],
         D=counterOut[3],
