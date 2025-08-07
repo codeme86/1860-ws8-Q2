@@ -3,15 +3,15 @@ CHIP DisplayCounter201890716 {
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    Inc16(in=out, out=incOut);
+    Inc16(in=counterOut, out=incOut);
     Mux16(a=incOut, b=false, sel=reset, out=next);
-    Register(in=next, load=inc, out=out);
+    Register(in=next, load=inc, out=counterOut);
 
     Decoder201890716(
-        A=out[0],
-        B=out[1],
-        C=out[2],
-        D=out[3],
+        A=counterOut[0],
+        B=counterOut[1],
+        C=counterOut[2],
+        D=counterOut[3],
         a=a,
         b=b,
         c=c,
