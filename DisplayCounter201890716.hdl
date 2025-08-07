@@ -3,21 +3,14 @@ CHIP DisplayCounter201890716 {
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    // Counter register
-    Register(in=next, load=inc, out=out);
-
-    // Increment the counter
-    Inc16(in=out, out=incOut);
-
-    // Reset logic using Mux16
-    Mux16(a=incOut, b[0..15]=false, sel=reset, out=next);
-
-    // Send lowest 4 bits to decoder
+    Inc16(in=outBus, out=incOut);
+    Mux16(a=incOut, b=false, sel=reset, out=next);
+    Register(in=next, load=inc, out=outBus);
     Decoder201890716(
-        A=out[0],
-        B=out[1],
-        C=out[2],
-        D=out[3],
+        A=outBus[0],
+        B=outBus[1],
+        C=outBus[2],
+        D=outBus[3],
         a=a,
         b=b,
         c=c,
