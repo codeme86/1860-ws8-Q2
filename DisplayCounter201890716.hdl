@@ -1,17 +1,23 @@
-Inc16(in=out, out=incOut);
-Mux16(a=incOut, b=false, sel=reset, out=next);
-Register(in=next, load=inc, out=out);
+CHIP DisplayCounter201890716 {
+    IN inc, reset;
+    OUT a, b, c, d, e, f, g;
 
-Decoder201890716(
-    A=next[0],
-    B=next[1],
-    C=next[2],
-    D=next[3],
-    a=a,
-    b=b,
-    c=c,
-    d=d,
-    e=e,
-    f=f,
-    g=g
-);
+    PARTS:
+    Inc16(in=out, out=incOut);
+    Mux16(a=incOut, b=false, sel=reset, out=next);
+    Register(in=next, load=inc, out=out);
+
+    Decoder201890716(
+        A=out[0],
+        B=out[1],
+        C=out[2],
+        D=out[3],
+        a=a,
+        b=b,
+        c=c,
+        d=d,
+        e=e,
+        f=f,
+        g=g
+    );
+}
