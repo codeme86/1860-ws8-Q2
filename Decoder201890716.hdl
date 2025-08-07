@@ -1,0 +1,128 @@
+CHIP Decoder201890716 {
+    IN A, B, C, D;
+    OUT a, b, c, d, e, f, g;
+
+    PARTS:
+    Not(in=A, out=nA);
+    Not(in=B, out=nB);
+    Not(in=C, out=nC);
+    Not(in=D, out=nD);
+
+    Or(a=A, b=nB, out=w0);
+    Or(a=w0, b=C, out=w1a);
+    Or(a=w1a, b=D, out=ta1);
+    Or(a=A, b=B, out=w2);
+    Or(a=w2, b=C, out=w3a);
+    Or(a=w3a, b=nD, out=ta2);
+    Or(a=nA, b=nB, out=w4);
+    Or(a=w4, b=C, out=w5a);
+    Or(a=w5a, b=nD, out=ta3);
+    Or(a=nA, b=B, out=w6);
+    Or(a=w6, b=nC, out=w7a);
+    Or(a=w7a, b=nD, out=ta4);
+    And(a=ta1, b=ta2, out=w8);
+    And(a=w8, b=ta3, out=w9a);
+    And(a=w9a, b=ta4, out=a);
+
+    Or(a=A, b=nB, out=w10);
+    Or(a=w10, b=C, out=w11a);
+    Or(a=w11a, b=D, out=tb1);
+    Or(a=A, b=B, out=w12);
+    Or(a=w12, b=C, out=w13a);
+    Or(a=w13a, b=nD, out=tb2);
+    Or(a=nB, b=nC, out=w14);
+    Or(a=w14, b=nD, out=tb3);
+    Or(a=nA, b=B, out=w15);
+    Or(a=w15, b=nC, out=w16a);
+    Or(a=w16a, b=D, out=tb4);
+    And(a=tb1, b=tb2, out=w17);
+    And(a=w17, b=tb3, out=w18a);
+    And(a=w18a, b=tb4, out=b);
+
+    Or(a=A, b=B, out=w19);
+    Or(a=w19, b=nC, out=w20a);
+    Or(a=w20a, b=D, out=tc1);
+    Or(a=nA, b=nB, out=w21);
+    Or(a=w21, b=D, out=tc2);
+    Or(a=nA, b=nB, out=w22);
+    Or(a=w22, b=nC, out=tc3);
+    And(a=tc1, b=tc2, out=w23);
+    And(a=w23, b=tc3, out=c);
+
+    And(a=nA, b=nB, out=w24);
+    And(a=nC, b=nD, out=w25);
+    And(a=w24, b=w25, out=m0);
+    And(a=nA, b=nB, out=w26);
+    And(a=C, b=nD, out=w27);
+    And(a=w26, b=w27, out=m1);
+    And(a=nA, b=B, out=w28);
+    And(a=C, b=nD, out=w29);
+    And(a=w28, b=w29, out=m2);
+    And(a=A, b=nB, out=w30);
+    And(a=nC, b=nD, out=w31);
+    And(a=w30, b=w31, out=m3);
+    And(a=A, b=nB, out=w32);
+    And(a=C, b=nD, out=w33);
+    And(a=w32, b=w33, out=m4);
+    And(a=A, b=nB, out=w34);
+    And(a=C, b=D, out=w35);
+    And(a=w34, b=w35, out=m5);
+    And(a=A, b=B, out=w36);
+    And(a=nC, b=nD, out=w37);
+    And(a=w36, b=w37, out=m6);
+    And(a=A, b=B, out=w38);
+    And(a=C, b=nD, out=w39);
+    And(a=w38, b=w39, out=m7);
+    And(a=A, b=B, out=w40);
+    And(a=nC, b=D, out=w41);
+    And(a=w40, b=w41, out=m8);
+    And(a=A, b=B, out=w42);
+    And(a=C, b=D, out=w43);
+    And(a=w42, b=w43, out=m9);
+    Or(a=m0, b=m1, out=o1);
+    Or(a=o1, b=m2, out=o2);
+    Or(a=o2, b=m3, out=o3);
+    Or(a=o3, b=m4, out=o4);
+    Or(a=o4, b=m5, out=o5);
+    Or(a=o5, b=m6, out=o6);
+    Or(a=o6, b=m7, out=o7);
+    Or(a=o7, b=m8, out=o8);
+    Or(a=o8, b=m9, out=d);
+
+    Or(a=A, b=nB, out=w44);
+    Or(a=w44, b=C, out=w45);
+    Or(a=w45, b=nD, out=te1);
+    Or(a=nB, b=nC, out=w46);
+    Or(a=w46, b=D, out=te2);
+    Or(a=nA, b=nB, out=w47);
+    Or(a=w47, b=D, out=te3);
+    Or(a=nA, b=nC, out=w48);
+    Or(a=w48, b=nD, out=te4);
+    And(a=te1, b=te2, out=w49);
+    And(a=w49, b=te3, out=w50);
+    And(a=w50, b=te4, out=e);
+
+    Or(a=nA, b=nB, out=w51);
+    Or(a=w51, b=C, out=w52);
+    Or(a=w52, b=nD, out=tf1);
+    Or(a=A, b=B, out=w53);
+    Or(a=w53, b=nD, out=tf2);
+    Or(a=A, b=B, out=w54);
+    Or(a=w54, b=nC, out=tf3);
+    Or(a=A, b=nC, out=w55);
+    Or(a=w55, b=nD, out=tf4);
+    And(a=tf1, b=tf2, out=w56);
+    And(a=w56, b=tf3, out=w57);
+    And(a=w57, b=tf4, out=f);
+
+    Or(a=A, b=B, out=w58);
+    Or(a=w58, b=C, out=tg1);
+    Or(a=A, b=nB, out=w59);
+    Or(a=w59, b=nC, out=w60);
+    Or(a=w60, b=nD, out=tg2);
+    Or(a=nA, b=nB, out=w61);
+    Or(a=w61, b=C, out=w62);
+    Or(a=w62, b=D, out=tg3);
+    And(a=tg1, b=tg2, out=w63);
+    And(a=w63, b=tg3, out=g);
+}
