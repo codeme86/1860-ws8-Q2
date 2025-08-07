@@ -4,27 +4,11 @@ CHIP DisplayCounter201890716 {
 
     PARTS:
 
-    Inc16(in=regOut, out=incOut);
-    Mux16(a=regOut, b=incOut, sel=inc, out=incMuxOut);
-    Mux16(a=incMuxOut, b=false, sel=reset, out=next);
-    Register(in=next, load=true, out=regOut);
+    Decoder201890716(A=A, B=B, C=C, D=D, a=a, b=b, c=c, d=d, e=e, f=f, g=g);
 
-    And(a=regOut[0], b=true, out=d0);
-    And(a=regOut[1], b=true, out=d1);
-    And(a=regOut[2], b=true, out=d2);
-    And(a=regOut[3], b=true, out=d3);
+    Mux16(a=rev, b=ix, sel=inc, out=fui);
+    Mux16(a=fui, b=false, sel=reset, out=next);
+    Register(in=next, load=true, out=rev, out[0]=D, out[1]=C, out[2]=B, out[3]=A);
+    Inc16(in=rev, out=ix);
 
-    Decoder201890716(
-        A=d3,
-        B=d2,
-        C=d1,
-        D=d0,
-        a=a,
-        b=b,
-        c=c,
-        d=d,
-        e=e,
-        f=f,
-        g=g
-    );
 }
