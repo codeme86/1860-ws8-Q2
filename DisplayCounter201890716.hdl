@@ -3,21 +3,22 @@ CHIP DisplayCounter201890716 {
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    Inc16(in=counterOut, out=incOut);
-    Mux16(a=incOut, b=false, sel=reset, out=next);
-    Register(in=next, load=inc, out=counterOut);
 
-    // extract individual bits
-    And(a=counterOut[0], b=true, out=bit0);
-    And(a=counterOut[1], b=true, out=bit1);
-    And(a=counterOut[2], b=true, out=bit2);
-    And(a=counterOut[3], b=true, out=bit3);
+    Inc16(in=regOut, out=incOut);
+    Mux16(a=regOut, b=incOut, sel=inc, out=incMuxOut);
+    Mux16(a=incMuxOut, b=false, sel=reset, out=next);
+    Register(in=next, load=true, out=regOut);
+
+    And(a=regOut[0], b=true, out=d0);
+    And(a=regOut[1], b=true, out=d1);
+    And(a=regOut[2], b=true, out=d2);
+    And(a=regOut[3], b=true, out=d3);
 
     Decoder201890716(
-        A=bit3,
-        B=bit2,
-        C=bit1,
-        D=bit0,
+        A=d3,
+        B=d2,
+        C=d1,
+        D=d0,
         a=a,
         b=b,
         c=c,
