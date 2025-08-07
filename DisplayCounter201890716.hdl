@@ -9,9 +9,9 @@ CHIP DisplayCounter201890716 {
 
     Decoder201890716(
         A=counterOut0,
-        B=counterOut[1],
-        C=counterOut[2],
-        D=counterOut[3],
+        B=counterOut1,
+        C=counterOut2,
+        D=counterOut3,
         a=a,
         b=b,
         c=c,
